@@ -9,10 +9,8 @@ const App = () => {
     const socket = new WebSocket('ws://localhost:8080');
 
     socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.frame) {
-        setFrame(data.frame);
-      }
+      const frameData = event.data;
+      setFrame(frameData);
     };
 
     socket.onopen = () => {
@@ -30,29 +28,11 @@ const App = () => {
     <div className="App">
       {/* Top Bar */}
       <header className="top-bar">
-        <h1>Therapy Save</h1>
+        <h1>Video Stream</h1>
       </header>
-
-      {/* Main Content */}
-      <div className="content">
-        {/* Left Section: Video Stream */}
-        <div className="video-container">
-          <h2>Live Stream</h2>
-          {frame ? (
-            <img src={`data:image/jpeg;base64,${frame}`} alt="Live Video" />
-          ) : (
-            <p>Loading video...</p>
-          )}
-        </div>
-
-        {/* Right Section: Graph Placeholder */}
-        <div className="graph-container">
-          <h2>Graph</h2>
-          <div className="graph-placeholder">
-            {/* You can replace this placeholder with a real graph later */}
-            <p>Graph will appear here.</p>
-          </div>
-        </div>
+      {/* Video Frame */}
+      <div className="video-frame">
+        {frame && <img src={`data:image/jpeg;base64,${frame}`} alt="Video Frame" />}
       </div>
     </div>
   );

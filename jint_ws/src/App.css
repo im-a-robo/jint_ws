@@ -5,21 +5,26 @@ body {
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  text-align: center;
 }
 
-/* Top Bar Styling */
 .top-bar {
   background-color: #282c34;
-  color: white;
   padding: 20px;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
+  color: white;
 }
 
+.video-frame {
+  margin: 20px auto;
+  width: 640px;
+  height: 480px;
+  border: 1px solid #ccc;
+}
+
+.video-frame img {
+  width: 100%;
+  height: 100%;
+}
 /* Main Content Area */
 .content {
   display: flex;
