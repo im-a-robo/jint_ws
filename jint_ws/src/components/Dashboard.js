@@ -11,7 +11,7 @@ const Dashboard = () => {
       const therapistId = 1; // Example therapist ID, you can set this dynamically
       const { data, error } = await supabase
         .from('patients')
-        .select('*')
+        .select('*');
         //.eq('therapist_id', therapistId);
 
       if (error) {
@@ -24,14 +24,14 @@ const Dashboard = () => {
     fetchPatients();
   }, []);
 
+  console.log(patients);
+  
   return (
     <div>
       <h1>Dashboard</h1>
       <ul>
         {patients.map((patient) => (
-          <li key={patient.id}>
-            <Link to={`/patient/${patient.id}`}>{patient.name}</Link> {/* Replace with appropriate patient info */}
-          </li>
+            <li key={patient.id}> {patient.name} </li>
         ))}
       </ul>
     </div>
