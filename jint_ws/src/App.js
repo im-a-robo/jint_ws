@@ -28,12 +28,32 @@ const App = () => {
     <div className="App">
       {/* Top Bar */}
       <header className="top-bar">
-        <h1>Video Stream</h1>
+        <h1>Mood Map</h1>
       </header>
-      {/* Video Frame */}
-      <div className="video-frame">
-        {frame && <img src={`data:image/jpeg;base64,${frame}`} alt="Video Frame" />}
-      </div>
+      
+      {/* Main Content */}
+      <main className="main-content">
+        {/* Video Frame */}
+        <div className ="emotion-box">Emotions Processor </div>
+        <div className="video-frame">
+          {frame ? (
+            <img src={`data:image/jpeg;base64,${frame}`} alt="Video Frame" className="video-image" />
+          ) : (
+            <p className="loading-text">Loading video...</p>
+          )}
+        </div>
+        
+        {/* Description or Graph Placeholder */}
+        <div className="graph-placeholder">
+          <h2>Emotion Analysis Graph</h2>
+          <p>This area can display graphs or additional information related to the video stream.</p>
+        </div>
+      </main>
+      
+      {/* Footer */}
+      <footer className="footer">
+        <p>© 2024 Therapy Save</p>
+      </footer>
     </div>
   );
 };
