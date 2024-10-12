@@ -119,10 +119,3 @@ async def video_stream(websocket, path):
         # Release the camera and close windows when done
         cap.release()
         cv2.destroyAllWindows()
-
-# Start the WebSocket server
-start_server = websockets.serve(video_stream, 'localhost', 8080)
-
-# Run the server
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
