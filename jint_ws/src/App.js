@@ -27,13 +27,13 @@ const App = () => {
     socket.onmessage = (event) => {
       try {
         const { frame, emotions } = JSON.parse(event.data);
+
         setFrame(frame); // Update the video frame
 
         // Update the emotion data graph
-        setEmotionData((prevData) => {
-          // Add new timestamp and emotion data
-          const newLabels = [...prevData.labels, emotions.timestamp];
-          const newDatasets = prevData.datasets.map((dataset) => {
+        setEmotionData((prevData) => ({
+          labels: [...prevData.labels, emotions.timestamp],
+          datasets: prevData.datasets.map((dataset) => {
             const emotionKey = dataset.label.toLowerCase();
             return {
               ...dataset,
