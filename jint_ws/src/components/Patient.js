@@ -59,7 +59,8 @@ export const Patient = () => {
 
   if (loading) return <Text>Loading...</Text>;
 
-  return (
+    return (
+     
     <Box p={5}>
       {patient && (
         <>

@@ -105,7 +105,7 @@ const MAX_DATA_POINTS = 30; // Set the maximum number of data points
                 },
               },
               y: {
-                title: { display: true, text: 'Emotion Confidence (%)' },
+                title: { display: true, text: 'Confidence (%)' },
                 min: 0,
                 max: 100,
               },
