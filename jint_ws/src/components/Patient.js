@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 
 const PatientDetail = () => {
-  const { id } = 1; // Get the patient ID from the URL useParams()
+  const  id  = 10; // const { id } = useParams();
   const [patient, setPatient] = useState(null);
   const [recordings, setRecordings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,13 +28,14 @@ const PatientDetail = () => {
       const { data, error } = await supabase
         .from('patients')
         .select('*')
-        .eq('id', 10)
+        .eq('id', id)
         .single();
 
       if (error) {
         console.error('Error fetching patient details:', error);
       } else {
         setPatient(data);
+          console.log(patient);
       }
       setLoading(false);
     };
@@ -44,12 +45,16 @@ const PatientDetail = () => {
         .from('user_recordings')
         .select('*')
         .eq('patient_id', id);
+        
 
       if (error) {
         console.error('Error fetching recordings:', error);
       } else {
         setRecordings(data);
+        console.log(recordings);
       }
+      
+        
     };
 
     fetchPatientDetails();
@@ -66,7 +71,7 @@ const PatientDetail = () => {
             <Avatar name={patient.name} size="lg" />
             <Box ml={4}>
               <Heading size="md">{patient.name}</Heading>
-              <Text>ID: {patient.id}</Text>
+              <Text>Email: {patient.email}</Text>
             </Box>
             <Button colorScheme="red" ml="auto">
               Start New Recording
@@ -85,7 +90,7 @@ const PatientDetail = () => {
               {recordings.length > 0 ? (
                 recordings.map((recording) => (
                   <Tr key={recording.id}>
-                    <Td>{new Date(recording.timestamp).toLocaleString()}</Td>
+                    <Td>{new Date(recording.start_time).toLocaleString()}</Td>
                     <Td>
                       <Input
                         defaultValue={recording.notes}
