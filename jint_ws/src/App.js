@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import { Video } from './Video';
+import { Video } from './components/Video';
 import { Dashboard } from './components/Dashboard';
 import { Patient } from './components/Patient';
 
