@@ -1,0 +1,122 @@
+timestamp,sad,angry,surprise,fear,happy,disgust,neutral,transcript
+2024-10-12 23:20:55,13.208664953708649,0.0002447800170557457,1.0335297417896072e-05,9.600424021482468,77.1889865398407,9.485286688037942e-10,0.001674395753070712,
+2024-10-12 23:20:55,9.477657644609073,0.0007019498716572223,0.00011196771751012086,4.228411494398802,86.28703274053531,5.047184152249957e-09,0.006086111169551606,
+2024-10-12 23:20:55,20.283367667599638,0.0013615971315332528,0.00026495232280270177,17.39316491999208,62.31513766230794,9.918154147918403e-08,0.006708237269105735,
+2024-10-12 23:20:55,5.557982251048088,0.0003013655941686011,5.2563626695700805e-05,8.047555387020111,86.38067841529846,1.2088405276777792e-08,0.013434029824566096,
+2024-10-12 23:20:55,1.3256070204079151,0.00011161855582031421,1.2969873353085859e-05,0.8463894948363304,97.77508974075317,4.103323583692919e-09,0.0527928292285651,
+2024-10-12 23:20:55,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:56,15.65866619348526,0.09754439815878868,0.1421655062586069,6.611007452011108,0.035080971429124475,1.5017770013669995e-09,77.45553851127625,
+2024-10-12 23:20:56,93.69369074031005,0.16252805553711122,7.297935286765073e-05,6.049776798460102,0.007274810335296879,0.00014877170497111812,0.0865109251564354,
+2024-10-12 23:20:56,95.32087445259094,0.12896605767309666,0.00019543915641406784,4.447318986058235,0.016290759958792478,0.00016577121186855948,0.0861866632476449,
+2024-10-12 23:20:56,96.12259841696014,0.18392826828305534,0.00012246872122533215,3.461637926795359,0.015044012421571459,0.00034067233839441756,0.2163254552006993,
+2024-10-12 23:20:56,96.98336160381298,0.06991016892855836,3.3324009798120995e-05,2.912768933144935,0.01166122171665879,7.735113955407672e-05,0.022179309137676313,
+2024-10-12 23:20:56,95.98358321385584,0.05258771080409458,5.792909851799522e-05,3.925008603929448,0.018214082968046313,3.826977602684921e-05,0.02050954400308278,
+2024-10-12 23:20:56,97.05613220407155,0.06021615253544182,7.915454978041921e-05,2.8419408609796597,0.018754823448245788,4.307845474284406e-05,0.022836516830673587,
+2024-10-12 23:20:56,96.78518176078796,0.036559763248078525,7.91875208960846e-05,3.1548745930194855,0.0190630104043521,1.4736183118202462e-05,0.004225558222969994,
+2024-10-12 23:20:57,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:57,90.97065817960002,0.007868342282853845,3.841282594734905e-05,8.968357320828119,0.05277004139923053,1.0662695332117825e-07,0.00031220457996940123,
+2024-10-12 23:20:57,23.74848574399948,2.28850394487381,0.04449785046745092,73.85240197181702,0.057836814085021615,0.003964968345826492,0.004312490636948496,
+2024-10-12 23:20:57,60.83393459522334,1.391964116213567,0.011948613230801416,37.64936850365213,0.09355053746815249,0.004143392899587886,0.015092308775901573,
+2024-10-12 23:20:57,66.46019616485812,1.0775199802231776,0.008798391878928133,32.37706317764897,0.06524796288075822,0.001357993359304103,0.009818667461764735,
+2024-10-12 23:20:58,55.06437360472994,0.35061345446992465,0.003234000156328995,44.46518785176422,0.1132838875052169,7.507058186124477e-05,0.003219773114304097,
+2024-10-12 23:20:58,40.57160019874573,1.5746034681797028,0.003130793629679829,57.81589150428772,0.02532378421165049,0.006002894588164054,0.0034452532418072224,
+2024-10-12 23:20:58,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:58,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:58,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:58,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:58,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:20:59,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:00,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:01,78.47958674905222,0.21074694906156952,0.003617012987019337,20.892721169753145,0.4059432782049941,0.00011701855116273489,0.007266333410558606," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:02,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:03,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:04,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:05,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:05,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:05,85.35411357879639,1.5892157331109047,0.0002539088882258511,13.006789982318878,0.010584871051833034,0.0006865746854600729,0.03835698589682579," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:05,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:05,0.0,0.0,0.0,0.0,0.0,0.0,0.0," Can you not eat a little? Hmm. Ah, okay."
+2024-10-12 23:21:05,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:05,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:05,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:06,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:07,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:08,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:09,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:10,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:10,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:10,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:10,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:10,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:10,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
+2024-10-12 23:21:10,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Something I'm telling you. Jackie B. T. doesn't know. They don't know what's prettier.
