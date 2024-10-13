@@ -1,4 +1,3 @@
-// PatientDetail.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
@@ -15,14 +14,16 @@ import {
   Td,
   Input,
   Avatar,
+  useToast,
 } from '@chakra-ui/react';
 
 export const Patient = () => {
   const { id } = useParams();
-  const navigate = useNavigate();  // For navigation
+  const navigate = useNavigate();
   const [patient, setPatient] = useState(null);
   const [recordings, setRecordings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const toast = useToast();
 
   useEffect(() => {
     const fetchPatientDetails = async () => {
@@ -34,6 +35,13 @@ export const Patient = () => {
 
       if (error) {
         console.error('Error fetching patient details:', error);
+        toast({
+          title: 'Error fetching patient details',
+          description: error.message,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
       } else {
         setPatient(data);
       }
@@ -48,6 +56,13 @@ export const Patient = () => {
 
       if (error) {
         console.error('Error fetching recordings:', error);
+        toast({
+          title: 'Error fetching recordings',
+          description: error.message,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
       } else {
         setRecordings(data);
       }
@@ -57,10 +72,14 @@ export const Patient = () => {
     fetchRecordings();
   }, [id]);
 
+  const moveToAnalytics = (recordingId) => {
+    navigate('/analytic', { state: { recordingId } }); // Pass the recording ID as state
+    console.log(`Viewing analytics for recording ID: ${recordingId}`);
+  };
+
   if (loading) return <Text>Loading...</Text>;
 
-    return (
-     
+  return (
     <Box p={5}>
       {patient && (
         <>
@@ -70,11 +89,10 @@ export const Patient = () => {
               <Heading size="md">{patient.name}</Heading>
               <Text>Email: {patient.email}</Text>
             </Box>
-            {/* Start New Recording Button that navigates to the Video page */}
             <Button
               colorScheme="red"
               ml="auto"
-              onClick={() => navigate('/video')}  // Navigate to the Video component
+              onClick={() => navigate('/video')}
             >
               Start New Recording
             </Button>
@@ -104,7 +122,7 @@ export const Patient = () => {
                     <Td>
                       <Button
                         colorScheme="teal"
-                        onClick={() => console.log(`Viewing analytics for ${recording.id}`)}
+                        onClick={() => moveToAnalytics(recording.id)} // Pass the recording ID
                       >
                         View Analytics
                       </Button>
