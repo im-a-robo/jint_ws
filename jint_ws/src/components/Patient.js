@@ -27,9 +27,10 @@ export const Patient = () => {
   useEffect(() => {
     const fetchPatientDetails = async () => {
       const { data, error } = await supabase
-        .from('user_recordings')
+        .from('patients')
         .select('*')
-        .eq('patient_id', id)
+        .eq('id', id)
+        .single();
 
       if (error) {
         console.error('Error fetching patient details:', error);
@@ -56,6 +57,13 @@ export const Patient = () => {
     fetchRecordings();
   }, [id]);
 
+  const startRecordingThread = async () => {
+    
+      navigate('/video');
+  
+  };
+  
+
   if (loading) return <Text>Loading...</Text>;
 
     return (
@@ -73,7 +81,7 @@ export const Patient = () => {
             <Button
               colorScheme="red"
               ml="auto"
-              onClick={() => navigate('/video')}  // Navigate to the Video component
+              onClick={startRecordingThread}  // Navigate to the Video component
             >
               Start New Recording
             </Button>
@@ -103,7 +111,7 @@ export const Patient = () => {
                     <Td>
                       <Button
                         colorScheme="teal"
-                        onClick={() => console.log(`Viewing analytics for ${recording.recording_session_csv}`)}
+                        onClick={() => console.log(`Viewing analytics for ${recording.id}`)}
                       >
                         View Analytics
                       </Button>

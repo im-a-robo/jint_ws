@@ -5,7 +5,7 @@ import 'chart.js/auto';
 
 const MAX_DATA_POINTS = 30; // Set the maximum number of data points
 
- export const Video =() =>{
+export const Video = () => {
   const [frame, setFrame] = useState(null);
   const [emotionData, setEmotionData] = useState({
     labels: [], // timestamps
@@ -86,11 +86,15 @@ const MAX_DATA_POINTS = 30; // Set the maximum number of data points
       <header className="top-bar">
         <h1 className="title">Mood Map</h1>
         <h2>Emotion Detection</h2>
+        {/* Stop Loop Button */}
+        <button className="stop-button">Stop Loop</button>
       </header>
+      
       {/* Video Frame */}
       <div className="video-frame">
         {frame && <img src={`data:image/jpeg;base64,${frame}`} alt="Video Frame" />}
       </div>
+      
       {/* Line Chart */}
       <div className="chart">
         <Line

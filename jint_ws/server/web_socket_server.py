@@ -1,36 +1,40 @@
-from flask import Flask, jsonify
-from flask_cors import CORS
-import threading
-import time
-import asyncio
 import websockets
+import asyncio
 import base64
 import pandas as pd
 from datetime import datetime
 import json
-import cv2
-
-# Import custom modules for video capture, emotion detection, and transcription
 from video_capture import VideoCapture
 from emotion_detector import EmotionDetector
-from transcriber import Transcriber  # If available, otherwise comment this out
+from transcriber import Transcriber  # Ensure you have this import
+import cv2
+import threading
 
-app = Flask(__name__)
-CORS(app)
+import websockets
+import asyncio
+import base64
+import pandas as pd
+from datetime import datetime
+import json
+from video_capture import VideoCapture
+from emotion_detector import EmotionDetector
+from transcriber import Transcriber  # Ensure you have this import
+import cv2
+import threading
 
-# Flask threading variables
-thread = None
-thread_running = False
-
-# WebSocket server class
 class WebSocketServer:
     def __init__(self):
         self.video_capture = VideoCapture()
         self.emotion_detector = EmotionDetector()
-        # self.transcriber = Transcriber(output_csv="transcription.csv", interval=5)  # Uncomment if available
+        self.transcriber = Transcriber(output_csv="jint_ws/server/transcription.csv", interval=5)  # Initialize Transcriber
 
-        # Initialize emotion data DataFrame
+        # Start the transcription in a separate thread
+        self.transcription_thread = threading.Thread(target=self.transcriber.start_transcription)
+        self.transcription_thread.daemon = True  # Daemonize thread
+        self.transcription_thread.start()
+
         self.emotion_data_df = pd.DataFrame(columns=['timestamp', 'sad', 'angry', 'surprise', 'fear', 'happy', 'disgust', 'neutral', 'transcript'])
+
         self.prev_transcript = ""
         self.out_transcript = ""
 
@@ -56,9 +60,15 @@ class WebSocketServer:
                     confidence_level = emotions[dominant_emotion] if dominant_emotion in emotions else 0
                     self.emotion_detector.draw_emotion(frame, (x, y, w, h), dominant_emotion, confidence_level)
 
-                # Prepare timestamp and retrieve the latest transcript (if Transcriber is used)
+                # Prepare timestamp and retrieve the latest transcript
                 timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                latest_transcript = self.transcriber.get_latest_transcript()  # Ensure you have this method in your Transcriber
+                if(self.prev_transcript == latest_transcript):
+                    self.out_transcript = ""
+                else: 
+                    self.out_transcript = latest_transcript
 
+                # Prepare emotion data to be sent over WebSocket
                 if dominant_emotion:
                     emotions_json = {
                         'timestamp': timestamp,
@@ -106,11 +116,15 @@ class WebSocketServer:
                 await asyncio.sleep(0.1)  # Adjust the frame rate
 
                 # Save the emotion data to a CSV file after every frame
-                self.emotion_data_df.to_csv('emotion_data.csv', index=False)
+                self.emotion_data_df.to_csv('jint_ws/server/emotion_data.csv', index=False)
+
+                self.prev_transcript = latest_transcript
 
         except websockets.exceptions.ConnectionClosedError as e:
             print(f"Connection closed with error: {e}")
+
         finally:
+            # Release the camera and close windows when done
             self.video_capture.release()
 
     def start_server(self):
@@ -119,28 +133,3 @@ class WebSocketServer:
         asyncio.get_event_loop().run_until_complete(start_server)
         asyncio.get_event_loop().run_forever()
 
-# Flask route to start the WebSocket server
-@app.route('/start-thread', methods=['POST'])
-def start_thread():
-    global thread, thread_running
-    if not thread_running:
-        thread_running = True
-        # Start the WebSocket server in a separate thread
-        websocket_server = WebSocketServer()
-        thread = threading.Thread(target=websocket_server.start_server)
-        thread.start()
-        return jsonify({"status": f"Thread started "}), 200
-    else:
-        return jsonify({"status": "Thread is already running"}), 200
-
-@app.route('/stop-thread', methods=['POST'])
-def stop_thread():
-    global thread_running
-    if thread_running:
-        thread_running = False
-        return jsonify({"status": "Thread stopped"}), 200
-    else:
-        return jsonify({"status": "No thread is running"}), 200
-
-if __name__ == '__main__':
-    app.run(debug=True)
