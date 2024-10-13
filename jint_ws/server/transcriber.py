@@ -6,12 +6,19 @@ import os
 import tempfile
 import csv
 from datetime import datetime
+import threading
 
 class Transcriber:
-    def __init__(self, output_csv="transcription.csv", interval=5):
+    def __init__(self, output_csv="combined_data.csv", interval=5):
         self.output_csv = output_csv
         self.interval = interval
         self.model = whisper.load_model("base")
+        self.lock = threading.Lock()  # Create a lock to manage concurrent access
+
+        # Clear the CSV file and write the header row
+        with open(self.output_csv, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(['timestamp', 'transcription', 'sad', 'angry', 'surprise', 'fear', 'happy', 'disgust', 'neutral'])  # Write headers
 
     def record_audio(self):
         sample_rate = 16000
@@ -31,32 +38,39 @@ class Transcriber:
         audio_file_path = self.save_audio_to_wav(audio, sample_rate)
 
         try:
-            # Open the CSV file for appending (append mode)
-            with open(self.output_csv, mode='a', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
+            with self.lock:  # Ensure only one thread writes to the file at a time
+                # Open the CSV file for appending (append mode)
+                with open(self.output_csv, mode='a', newline='', encoding='utf-8') as file:
+                    writer = csv.writer(file)
 
-                # Transcribe the audio file using Whisper
-                print("Transcribing...")
-                result = self.model.transcribe(audio_file_path, language="en", verbose=True)
-                transcription_text = result['text']
+                    # Transcribe the audio file using Whisper
+                    print("Transcribing...")
+                    result = self.model.transcribe(audio_file_path, language="en", verbose=True)
+                    transcription_text = result['text']
 
-                # Get the current timestamp
-                current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    # Get the current timestamp
+                    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-                # Write the transcription to the CSV with the current timestamp
-                writer.writerow([current_time, transcription_text])
-                print(f"{current_time}: {transcription_text}")
+                    # Write the transcription to the CSV with the current timestamp
+                    writer.writerow([current_time, transcription_text, '', '', '', '', '', '', ''])  # Emotion data is empty for this row
+                    print(f"{current_time}: {transcription_text}")
 
         finally:
             # Clean up and remove the temporary audio file
             os.remove(audio_file_path)
 
-    def start_transcription(self):
-        # Clear the CSV file and write the header row
-        with open(self.output_csv, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            writer.writerow(['timestamp', 'transcription'])  # Write headers
+    def save_combined_data(self, new_row_df):
+        with self.lock:  # Ensure only one thread writes to the file at a time
+            # Append emotion data to the same CSV file
+            timestamp = new_row_df['timestamp'].values[0]  # Get timestamp for the row
+            emotions = new_row_df.iloc[0, 1:].values.tolist()  # Get emotions as a list
+            # Open the CSV file for appending (append mode)
+            with open(self.output_csv, mode='a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                # Write empty transcription for this emotion row
+                writer.writerow([timestamp, '', *emotions])  # Add timestamp, empty transcription, and emotions
 
+    def start_transcription(self):
         while True:
             self.transcribe_mic_audio()
 
