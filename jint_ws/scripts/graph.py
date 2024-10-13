@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 # Load data from a CSV file
-df = pd.read_csv('jint_ws/server/combined_data.csv')
+df = pd.read_csv('jint_ws/server/emotion_data.csv')
 
 # Ensure 'timestamp' is parsed as datetime
 df['timestamp'] = pd.to_datetime(df['timestamp'])
