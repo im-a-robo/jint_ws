@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import Papa from 'papaparse';
+import { supabase } from '../supabaseClient';
 
 const Analytic = () => {
   const [chartData, setChartData] = useState({
@@ -16,44 +17,45 @@ const Analytic = () => {
     ],
   });
 
+  const [patient, setPatient] = useState(null)
+  const [emotionData, setEmotionData] = useState(null)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/emotion_data.csv'); // Update with the correct URL to Flask backend
-        if (!response.ok) throw new Error('Network response was not ok');
+        //const response = await fetch('http://localhost:5000/emotion_data.csv'); // Update with the correct URL to Flask backend
+        //if (!response.ok) throw new Error('Network response was not ok');
         
-        const text = await response.text();
-        
-        Papa.parse(text, {
-          header: true,
-          complete: (results) => {
-            console.log('Parsed Results:', results.data); // Check parsed data
-            const labels = results.data.map(row => row.timestamp);
-            const sad = results.data.map(row => parseFloat(row.sad));
-            const angry = results.data.map(row => parseFloat(row.angry));
-            const surprise = results.data.map(row => parseFloat(row.surprise));
-            const fear = results.data.map(row => parseFloat(row.fear));
-            const happy = results.data.map(row => parseFloat(row.happy));
-            const disgust = results.data.map(row => parseFloat(row.disgust));
-            const neutral = results.data.map(row => parseFloat(row.neutral));
+        const { data, error } = await supabase
+        .from('user_recordings')
+        .select('*')
+        .eq('patient_id', 1);
 
-            setChartData({
-              labels,
-              datasets: [
-                { ...chartData.datasets[0], data: sad },
-                { ...chartData.datasets[1], data: angry },
-                { ...chartData.datasets[2], data: surprise },
-                { ...chartData.datasets[3], data: fear },
-                { ...chartData.datasets[4], data: happy },
-                { ...chartData.datasets[5], data: disgust },
-                { ...chartData.datasets[6], data: neutral },
-              ],
-            });
-          },
-          error: (error) => {
-            console.error('Error parsing CSV:', error);
-          },
-        });
+        if (error){
+
+        }else{
+          setEmotionData(data[1].recording_session_csv) //Data[n] == Data[user_recording.id]
+          const text = emotionData;
+          console.log(data)
+          console.log(emotionData)
+
+          Papa.parse(emotionData, {
+            header: true, // Treat the first row as headers
+            dynamicTyping: true, // Automatically convert numbers
+            complete: function(results) {
+              console.log(results.data); // This will be an array of objects
+            },
+            error: function(error) {
+              console.error('Error parsing CSV:', error);
+            }
+          });
+        }
+
+        //const text = await response.text();
+        
+        
+
+        
       } catch (error) {
         console.error('Fetch error:', error);
       }

@@ -27,10 +27,9 @@ export const Patient = () => {
   useEffect(() => {
     const fetchPatientDetails = async () => {
       const { data, error } = await supabase
-        .from('patients')
+        .from('user_recordings')
         .select('*')
-        .eq('id', id)
-        .single();
+        .eq('patient_id', id)
 
       if (error) {
         console.error('Error fetching patient details:', error);
@@ -104,7 +103,7 @@ export const Patient = () => {
                     <Td>
                       <Button
                         colorScheme="teal"
-                        onClick={() => console.log(`Viewing analytics for ${recording.id}`)}
+                        onClick={() => console.log(`Viewing analytics for ${recording.recording_session_csv}`)}
                       >
                         View Analytics
                       </Button>

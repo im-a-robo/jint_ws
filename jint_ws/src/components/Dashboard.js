@@ -12,7 +12,9 @@ import {
   Td,
   Input,
   Text,
+  Button,
 } from '@chakra-ui/react';
+import Analytic from './Analytic';
 
 export const Dashboard = () => {
   const [patients, setPatients] = useState([]);
@@ -49,6 +51,48 @@ export const Dashboard = () => {
 
   return (
     <Box p={5}>
+
+<Button
+      onClick={() => {
+        fetch('http://127.0.0.1:5000/start-thread', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+          alert(data.status);  // Show alert with the thread status from the server
+        })
+        .catch(error => {
+          console.error('Error:', error);  // Log any errors
+        });
+      }}
+    >
+  Start Python Thread
+</Button>
+
+<Button
+      onClick={() => {
+        fetch('http://127.0.0.1:5000/stop-thread', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+          alert(data.status);  // Show alert with the thread status from the server
+        })
+        .catch(error => {
+          console.error('Error:', error);  // Log any errors
+        });
+      }}
+    >
+  Stop Python Thread
+</Button>
+
+
       {/* Header with teal color */}
       <Box bg="teal.500" p={4} mb={4} color="white" borderRadius="md">
         <Text fontSize="2xl" fontWeight="bold" textAlign="center">
@@ -98,6 +142,7 @@ export const Dashboard = () => {
           )}
         </Tbody>
       </Table>
+      <Analytic />
     </Box>
   );
 };
