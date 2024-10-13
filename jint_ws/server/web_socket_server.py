@@ -102,7 +102,7 @@ class WebSocketServer:
                 await asyncio.sleep(0.1)  # Adjust the frame rate
 
                 # Save the emotion data to a CSV file after every frame
-                self.emotion_data_df.to_csv('emotion_data.csv', index=False)
+                self.emotion_data_df.to_csv('jint_ws/server/emotion_data.csv', index=False)
 
         except websockets.exceptions.ConnectionClosedError as e:
             print(f"Connection closed with error: {e}")

@@ -37,7 +37,7 @@ class Transcriber:
 
                 # Transcribe the audio file using Whisper
                 print("Transcribing...")
-                result = self.model.transcribe(audio_file_path, verbose=True)
+                result = self.model.transcribe(audio_file_path, language="en", verbose=True)
                 transcription_text = result['text']
 
                 # Get the current timestamp
