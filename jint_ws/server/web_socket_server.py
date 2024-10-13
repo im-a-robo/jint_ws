@@ -35,6 +35,9 @@ class WebSocketServer:
 
         self.emotion_data_df = pd.DataFrame(columns=['timestamp', 'sad', 'angry', 'surprise', 'fear', 'happy', 'disgust', 'neutral', 'transcript'])
 
+        self.prev_transcript = ""
+        self.out_transcript = ""
+
     async def video_stream(self, websocket, path):
         try:
             while True:
@@ -60,6 +63,10 @@ class WebSocketServer:
                 # Prepare timestamp and retrieve the latest transcript
                 timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 latest_transcript = self.transcriber.get_latest_transcript()  # Ensure you have this method in your Transcriber
+                if(self.prev_transcript == latest_transcript):
+                    self.out_transcript = ""
+                else: 
+                    self.out_transcript = latest_transcript
 
                 # Prepare emotion data to be sent over WebSocket
                 if dominant_emotion:
@@ -72,7 +79,7 @@ class WebSocketServer:
                         'happy': emotions.get('happy', 0),
                         'disgust': emotions.get('disgust', 0),
                         'neutral': emotions.get('neutral', 0),
-                        'transcript': latest_transcript  # Include transcript here
+                        'transcript': self.out_transcript  # Include transcript here
                     }
                 else:
                     emotions_json = {
@@ -84,7 +91,7 @@ class WebSocketServer:
                         'happy': 0,
                         'disgust': 0,
                         'neutral': 0,
-                        'transcript': latest_transcript  # Include transcript even if no dominant emotion
+                        'transcript': self.out_transcript  # Include transcript even if no dominant emotion
                     }
 
                 # Append the emotion data to the DataFrame
@@ -110,6 +117,8 @@ class WebSocketServer:
 
                 # Save the emotion data to a CSV file after every frame
                 self.emotion_data_df.to_csv('jint_ws/server/emotion_data.csv', index=False)
+
+                self.prev_transcript = latest_transcript
 
         except websockets.exceptions.ConnectionClosedError as e:
             print(f"Connection closed with error: {e}")
