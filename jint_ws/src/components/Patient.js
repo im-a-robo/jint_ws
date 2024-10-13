@@ -1,6 +1,6 @@
 // PatientDetail.js
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import {
   Box,
@@ -17,8 +17,9 @@ import {
   Avatar,
 } from '@chakra-ui/react';
 
-const PatientDetail = () => {
-  const  id  = 10; // const { id } = useParams();
+export const Patient = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();  // For navigation
   const [patient, setPatient] = useState(null);
   const [recordings, setRecordings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +36,6 @@ const PatientDetail = () => {
         console.error('Error fetching patient details:', error);
       } else {
         setPatient(data);
-          console.log(patient);
       }
       setLoading(false);
     };
@@ -45,16 +45,12 @@ const PatientDetail = () => {
         .from('user_recordings')
         .select('*')
         .eq('patient_id', id);
-        
 
       if (error) {
         console.error('Error fetching recordings:', error);
       } else {
         setRecordings(data);
-        console.log(recordings);
       }
-      
-        
     };
 
     fetchPatientDetails();
@@ -73,7 +69,12 @@ const PatientDetail = () => {
               <Heading size="md">{patient.name}</Heading>
               <Text>Email: {patient.email}</Text>
             </Box>
-            <Button colorScheme="red" ml="auto">
+            {/* Start New Recording Button that navigates to the Video page */}
+            <Button
+              colorScheme="red"
+              ml="auto"
+              onClick={() => navigate('/video')}  // Navigate to the Video component
+            >
               Start New Recording
             </Button>
           </Box>
@@ -95,13 +96,15 @@ const PatientDetail = () => {
                       <Input
                         defaultValue={recording.notes}
                         onChange={(e) =>
-                          // Update notes in the database if required
                           console.log(`Update notes for recording ID ${recording.id}: ${e.target.value}`)
                         }
                       />
                     </Td>
                     <Td>
-                      <Button colorScheme="teal" onClick={() => console.log(`Viewing analytics for ${recording.id}`)}>
+                      <Button
+                        colorScheme="teal"
+                        onClick={() => console.log(`Viewing analytics for ${recording.id}`)}
+                      >
                         View Analytics
                       </Button>
                     </Td>
@@ -121,5 +124,3 @@ const PatientDetail = () => {
     </Box>
   );
 };
-
-export default PatientDetail;
