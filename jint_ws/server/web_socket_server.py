@@ -6,12 +6,21 @@ from datetime import datetime
 import json
 from video_capture import VideoCapture
 from emotion_detector import EmotionDetector
+from transcriber import Transcriber  # Ensure you have this import
 import cv2
+import threading
 
 class WebSocketServer:
     def __init__(self):
         self.video_capture = VideoCapture()
         self.emotion_detector = EmotionDetector()
+        self.transcriber = Transcriber(output_csv="jint_ws/server/transcription.csv", interval=5)  # Initialize Transcriber
+        
+        # Start the transcription in a separate thread
+        self.transcription_thread = threading.Thread(target=self.transcriber.start_transcription)
+        self.transcription_thread.daemon = True  # Daemonize thread
+        self.transcription_thread.start()
+
         self.emotion_data_df = pd.DataFrame(columns=['timestamp', 'sad', 'angry', 'surprise', 'fear', 'happy', 'disgust', 'neutral'])
 
     async def video_stream(self, websocket, path):
@@ -22,10 +31,14 @@ class WebSocketServer:
                     break
 
                 faces = self.video_capture.detect_faces(frame)
+                emotions = {}
+                dominant_emotion = None
+
+                # Process faces for emotion detection
                 for (x, y, w, h) in faces:
                     face_roi = frame[y:y + h, x:x + w]
-
                     emotions, dominant_emotion = self.emotion_detector.analyze_emotion(face_roi)
+
                     if emotions is None:
                         continue
 
@@ -45,11 +58,9 @@ class WebSocketServer:
                     }])
                     self.emotion_data_df = pd.concat([self.emotion_data_df, new_row], ignore_index=True)
 
-                    # Convert the frame to JPEG for WebSocket transmission
-                    _, buffer = cv2.imencode('.jpg', frame)
-                    frame_data = base64.b64encode(buffer).decode('utf-8')
-
-                    # Prepare emotion data to be sent over WebSocket
+                # Prepare emotion data to be sent over WebSocket
+                if dominant_emotion:
+                    # Only update emotions if a dominant emotion is detected
                     emotions_json = {
                         'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                         'sad': emotions.get('sad', 0),
@@ -60,10 +71,26 @@ class WebSocketServer:
                         'disgust': emotions.get('disgust', 0),
                         'neutral': emotions.get('neutral', 0)
                     }
+                else:
+                    # If no dominant emotion is detected, send default values
+                    emotions_json = {
+                        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        'sad': 0,
+                        'angry': 0,
+                        'surprise': 0,
+                        'fear': 0,
+                        'happy': 0,
+                        'disgust': 0,
+                        'neutral': 0
+                    }
 
-                    # Send both frame and emotion data as a JSON string
-                    message = json.dumps({'frame': frame_data, 'emotions': emotions_json})
-                    await websocket.send(message)
+                # Convert the frame to JPEG for WebSocket transmission
+                _, buffer = cv2.imencode('.jpg', frame)
+                frame_data = base64.b64encode(buffer).decode('utf-8')
+
+                # Send both frame and emotion data as a JSON string
+                message = json.dumps({'frame': frame_data, 'emotions': emotions_json})
+                await websocket.send(message)
 
                 # Display the frame locally
                 cv2.imshow('Real-time Emotion Detection', frame)
@@ -75,7 +102,7 @@ class WebSocketServer:
                 await asyncio.sleep(0.1)  # Adjust the frame rate
 
                 # Save the emotion data to a CSV file after every frame
-                self.emotion_data_df.to_csv('emotion_data.csv', index=False)
+                self.emotion_data_df.to_csv('jint_ws/server/emotion_data.csv', index=False)
 
         except websockets.exceptions.ConnectionClosedError as e:
             print(f"Connection closed with error: {e}")
@@ -84,7 +111,13 @@ class WebSocketServer:
             # Release the camera and close windows when done
             self.video_capture.release()
 
+
     def start_server(self):
+        """Starts the WebSocket server."""
         start_server = websockets.serve(self.video_stream, 'localhost', 8080)
         asyncio.get_event_loop().run_until_complete(start_server)
         asyncio.get_event_loop().run_forever()
+
+if __name__ == "__main__":
+    server = WebSocketServer()
+    server.start_server()
