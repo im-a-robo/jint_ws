@@ -17,52 +17,57 @@ const Analytic = () => {
     ],
   });
 
-  const [patient, setPatient] = useState(null)
-  const [emotionData, setEmotionData] = useState(null)
+  const [patient, setPatient] = useState(null); // To hold the current patient data
+  const [emotionData, setEmotionData] = useState(null);
+  const PATIENT_ID = 1; // Set the patient ID you want to query
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //const response = await fetch('http://localhost:5000/emotion_data.csv'); // Update with the correct URL to Flask backend
-        //if (!response.ok) throw new Error('Network response was not ok');
-        
         const { data, error } = await supabase
-        .from('user_recordings')
-        .select('*')
-        .eq('patient_id', 1);
+          .from('user_recordings')
+          .select('*')
+          .eq('patient_id', PATIENT_ID); // Using a constant patient ID for querying
 
-        if (error){
+        if (error) {
+          console.error('Error fetching data:', error);
+        } else if (data.length > 0) {
+          const csvData = data[3].recording_session_csv; // Use the first item since we are filtering by patient ID
+          setEmotionData(csvData); // Set emotion data for parsing
 
-        }else{
-          setEmotionData(data[1].recording_session_csv) //Data[n] == Data[user_recording.id]
-          const text = emotionData;
-          console.log(data)
-          console.log(emotionData)
-
-          Papa.parse(emotionData, {
+          
+          // Parse the CSV
+          Papa.parse(csvData, {
             header: true, // Treat the first row as headers
             dynamicTyping: true, // Automatically convert numbers
-            complete: function(results) {
+            complete: function (results) {
               console.log(results.data); // This will be an array of objects
+
+              // Prepare the chart data
+              const labels = results.data.map(item => item.timestamp);
+              const datasets = chartData.datasets.map(dataset => {
+                const emotionKey = dataset.label.toLowerCase();
+                return {
+                  ...dataset,
+                  data: results.data.map(item => item[emotionKey]) // Map emotion values from CSV
+                };
+              });
+
+              // Update chart data
+              setChartData({ labels, datasets });
             },
-            error: function(error) {
+            error: function (error) {
               console.error('Error parsing CSV:', error);
             }
           });
         }
-
-        //const text = await response.text();
-        
-        
-
-        
       } catch (error) {
         console.error('Fetch error:', error);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchData(); // Fetch data when the component mounts
+  }, []); // Empty dependency array ensures it runs only on mount
 
   return (
     <div>
