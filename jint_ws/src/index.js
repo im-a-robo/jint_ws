@@ -7,13 +7,16 @@ import { ChakraProvider } from '@chakra-ui/react';
 import Dashboard from './components/Dashboard';
 import Patient from "./components/Patient";
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
+ 
     <ChakraProvider>
+     
       <App />
+      
     </ChakraProvider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

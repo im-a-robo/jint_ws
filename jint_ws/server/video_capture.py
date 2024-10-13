@@ -22,3 +22,5 @@ class VideoCapture:
         """Releases the video capture object."""
         self.cap.release()
         cv2.destroyAllWindows()
+
+   
